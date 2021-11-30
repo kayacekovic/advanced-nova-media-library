@@ -28,7 +28,7 @@
         <input :id="`__media__${field.attribute}`" :multiple="multiple" ref="file" class="form-file-input" type="file" @change="add"/>
         <label :for="`__media__${field.attribute}`" class="form-file-btn btn btn-default btn-primary" v-text="label"/>
       </span>
-      <span v-if="showCameraOnMobile" class="camera-icon ml-3">
+      <span v-if="field.showCameraOnMobile" class="camera-icon ml-3">
         <input :id="`__media__mobile__${field.attribute}`" :multiple="multiple" ref="file" class="form-file-input" type="file" capture="user" accept="image/*" @change="add"/>
         <label :for="`__media__mobile__${field.attribute}`">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
