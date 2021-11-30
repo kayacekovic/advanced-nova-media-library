@@ -150,6 +150,19 @@ class Media extends Field
         return $this;
     }
 
+    /**
+     * Set showCameraOnMobile for mobile devices.
+     *
+     * Can be upload image by device camera on mobile devices.
+     *
+     * @param bool $showCameraOnMobile
+     * @return $this
+     */
+    public function showCameraOnMobile(bool $showCameraOnMobile = true)
+    {
+        return $this->withMeta(['showCameraOnMobile' => $showCameraOnMobile]);
+    }
+
     public function uploadsToVapor(bool $uploadsToVapor = true): self
     {
         return $this->withMeta(['uploadsToVapor' => $uploadsToVapor]);
@@ -168,7 +181,7 @@ class Media extends Field
         if ($attribute === 'ComputedField') {
             $attribute = call_user_func($this->computedCallback, $model);
         }
-        
+
         collect($data)
             ->filter(function ($value) {
                 return $value instanceof UploadedFile;
@@ -216,7 +229,7 @@ class Media extends Field
     {
         return collect($data)
             ->filter(function ($value) {
-                // New files will come in as UploadedFile objects, 
+                // New files will come in as UploadedFile objects,
                 // whereas Vapor-uploaded files will come in as arrays.
                 return $value instanceof UploadedFile || is_array($value);
             })->map(function ($file, int $index) use ($request, $model, $collection) {
@@ -258,7 +271,7 @@ class Media extends Field
     private function removeDeletedMedia($data, Collection $medias): Collection
     {
         $remainingIds = collect($data)->filter(function ($value) {
-            // New files will come in as UploadedFile objects, 
+            // New files will come in as UploadedFile objects,
             // whereas Vapor-uploaded files will come in as arrays.
             return ! $value instanceof UploadedFile
             && ! is_array($value);
@@ -371,7 +384,7 @@ class Media extends Field
     /**
      * This creates a Media object from a previously, client-side, uploaded file.
      * The file is uploaded using a pre-signed S3 URL, via Vapor.store.
-     * This method will use addMediaFromUrl(), passing it the 
+     * This method will use addMediaFromUrl(), passing it the
      * temporary location of the file.
      */
     private function makeMediaFromVaporUpload(array $file, HasMedia $model): FileAdder
