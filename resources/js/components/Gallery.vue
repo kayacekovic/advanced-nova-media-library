@@ -29,7 +29,7 @@
         <label :for="`__media__${field.attribute}`" class="form-file-btn btn btn-default btn-primary" v-text="label"/>
       </span>
       <span v-if="field.showCameraOnMobile" class="camera-icon ml-3">
-        <input :id="`__media__mobile__${field.attribute}`" :multiple="multiple" ref="mobileFile" class="form-file-input" type="file" capture="user" accept="image/*" @change="add('mobileFile')"/>
+        <input :id="`__media__mobile__${field.attribute}`" :multiple="multiple" ref="mobileFile" class="form-file-input" type="file" accept="image/*" @change="add('mobileFile')" capture />
         <label :for="`__media__mobile__${field.attribute}`">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
